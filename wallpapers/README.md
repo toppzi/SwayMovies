@@ -8,6 +8,7 @@ Copy your wallpaper images there (filenames in `MANIFEST.txt`). They are **gitig
 
 | File | Theme |
 |------|--------|
+| `bikermice.jpg` | bikermice |
 | `wallhaven_w89pvq.jpg` | terminator |
 | `star_wars.jpg` | starwars |
 | `tiefighter.jpg` | starwars-light |

@@ -15,6 +15,7 @@ Movie-themed dotfiles for **Sway** on Fedora/Linux: one command switches wallpap
 | `bttf` | Back to the Future Part III |
 | `predator` | Predator — jungle |
 | `mortalkombat` | Mortal Kombat |
+| `bikermice` | Biker Mice from Mars |
 
 ## Requirements
 
