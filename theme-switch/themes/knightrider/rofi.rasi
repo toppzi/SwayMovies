@@ -1,0 +1,134 @@
+/**
+ * App launcher — Knight Rider / KITT
+ */
+
+configuration {
+    modes: "drun";
+    show-icons: true;
+    icon-theme: "Adwaita";
+    drun-display-format: "{name}";
+    drun-match-fields: "name,generic,exec,categories,keywords";
+    sort: true;
+    sorting-method: "fzf";
+    display-drun: "KITT";
+}
+
+* {
+    background-color: transparent;
+    font: "Noto Sans Mono 11";
+
+    base: #08061c;
+    surface0: #5c112e;
+    surface1: #9c1531;
+    overlay0: #4b454f;
+    text: #f1c09f;
+    subtext: #a3582f;
+    scanner: #d71d33;
+    cruise: #468aa2;
+    amber: #f09d5a;
+
+    background: @base;
+    foreground: @text;
+    normal-background: @surface0;
+    normal-foreground: @text;
+    alternate-normal-background: @surface0;
+    alternate-normal-foreground: @text;
+    selected-normal-background: @surface1;
+    selected-normal-foreground: @text;
+    active-foreground: @scanner;
+    urgent-foreground: @cruise;
+}
+
+window {
+    location: center;
+    anchor: center;
+    width: 44em;
+    border: 2px;
+    border-radius: 2px;
+    border-color: @scanner;
+    background-color: rgba(8, 6, 28, 96%);
+    padding: 14px;
+}
+
+mainbox {
+    spacing: 10px;
+    children: [ inputbar, listview ];
+}
+
+inputbar {
+    spacing: 8px;
+    children: [ prompt, entry ];
+}
+
+prompt {
+    text-color: @cruise;
+    padding: 0 6px 0 0;
+}
+
+entry {
+    background-color: @surface0;
+    text-color: @text;
+    placeholder: "Search applications…";
+    placeholder-color: @subtext;
+    padding: 10px 12px;
+    border-radius: 2px;
+    border: 1px;
+    border-color: @surface1;
+}
+
+listview {
+    columns: 2;
+    lines: 8;
+    fixed-columns: true;
+    cycle: false;
+    spacing: 8px;
+    scrollbar: true;
+}
+
+element {
+    orientation: horizontal;
+    spacing: 10px;
+    padding: 10px 12px;
+    border-radius: 2px;
+    border: 1px;
+    border-color: transparent;
+    cursor: pointer;
+    children: [ element-icon, element-text ];
+}
+
+element-icon {
+    size: 32px;
+    cursor: inherit;
+}
+
+element-text {
+    text-color: @text;
+    vertical-align: 0.5;
+    cursor: inherit;
+}
+
+element normal normal {
+    background-color: @surface0;
+}
+
+element alternate normal {
+    background-color: rgba(92, 17, 46, 80%);
+}
+
+element selected normal {
+    background-color: @surface1;
+    border-color: @scanner;
+    text-color: @text;
+}
+
+element selected {
+    background-color: @surface1;
+}
+
+scrollbar {
+    width: 6px;
+    handle-color: @overlay0;
+    handle-width: 6px;
+    border-radius: 0;
+    padding: 0;
+}
