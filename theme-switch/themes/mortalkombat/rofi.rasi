@@ -1,0 +1,134 @@
+/**
+ * App launcher — Mortal Kombat
+ */
+
+configuration {
+    modes: "drun";
+    show-icons: true;
+    icon-theme: "Adwaita";
+    drun-display-format: "{name}";
+    drun-match-fields: "name,generic,exec,categories,keywords";
+    sort: true;
+    sorting-method: "fzf";
+    display-drun: "FATALITY";
+}
+
+* {
+    background-color: transparent;
+    font: "Noto Sans Mono 11";
+
+    base: #000000;
+    surface0: #272e50;
+    surface1: #33475f;
+    overlay0: #4f393c;
+    text: #c2cadd;
+    subtext: #646891;
+    purple: #9d4edd;
+    blue: #394f95;
+    gold: #ff8c00;
+
+    background: @base;
+    foreground: @text;
+    normal-background: @surface0;
+    normal-foreground: @text;
+    alternate-normal-background: @surface0;
+    alternate-normal-foreground: @text;
+    selected-normal-background: @surface1;
+    selected-normal-foreground: @text;
+    active-foreground: @purple;
+    urgent-foreground: @gold;
+}
+
+window {
+    location: center;
+    anchor: center;
+    width: 44em;
+    border: 2px;
+    border-radius: 2px;
+    border-color: @purple;
+    background-color: rgba(0, 0, 0, 96%);
+    padding: 14px;
+}
+
+mainbox {
+    spacing: 10px;
+    children: [ inputbar, listview ];
+}
+
+inputbar {
+    spacing: 8px;
+    children: [ prompt, entry ];
+}
+
+prompt {
+    text-color: @purple;
+    padding: 0 6px 0 0;
+}
+
+entry {
+    background-color: @surface0;
+    text-color: @text;
+    placeholder: "Search applications…";
+    placeholder-color: @subtext;
+    padding: 10px 12px;
+    border-radius: 2px;
+    border: 1px;
+    border-color: @blue;
+}
+
+listview {
+    columns: 2;
+    lines: 8;
+    fixed-columns: true;
+    cycle: false;
+    spacing: 8px;
+    scrollbar: true;
+}
+
+element {
+    orientation: horizontal;
+    spacing: 10px;
+    padding: 10px 12px;
+    border-radius: 2px;
+    border: 1px;
+    border-color: transparent;
+    cursor: pointer;
+    children: [ element-icon, element-text ];
+}
+
+element-icon {
+    size: 32px;
+    cursor: inherit;
+}
+
+element-text {
+    text-color: @text;
+    vertical-align: 0.5;
+    cursor: inherit;
+}
+
+element normal normal {
+    background-color: @surface0;
+}
+
+element alternate normal {
+    background-color: rgba(39, 46, 80, 80%);
+}
+
+element selected normal {
+    background-color: @surface1;
+    border-color: @purple;
+    text-color: @text;
+}
+
+element selected {
+    background-color: @surface1;
+}
+
+scrollbar {
+    width: 6px;
+    handle-color: @overlay0;
+    handle-width: 6px;
+    border-radius: 0;
+    padding: 0;
+}

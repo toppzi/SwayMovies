@@ -1,0 +1,17 @@
+# OS / editor
+.DS_Store
+*~
+*.swp
+
+# Large wallpapers (keep locally; see wallpapers/MANIFEST.txt)
+wallpapers/files/
+*.jpg
+*.jpeg
+*.png
+*.webp
+
+# Runtime state (created on the machine)
+.local/
+
+# User-specific sway config if symlinked
+config/sway/config

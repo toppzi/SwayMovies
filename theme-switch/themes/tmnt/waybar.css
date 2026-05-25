@@ -1,0 +1,274 @@
+/* Teenage Mutant Ninja Turtles — flat bar, transparent modules */
+
+* {
+    font-family: 'Noto Sans Mono', 'Font Awesome 6 Free', 'Font Awesome 6 Brands', monospace;
+    font-size: 13px;
+    min-height: 0;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+}
+
+window#waybar {
+    background-color: rgba(25, 28, 40, 0.90);
+    border-bottom: 2px solid #8b5cf6;
+    color: #b5bbcb;
+    padding: 0;
+    transition-property: background-color;
+    transition-duration: 0.3s;
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+    margin: 0;
+    padding: 0;
+}
+
+.modules-left > widget,
+.modules-center > widget,
+.modules-right > widget {
+    margin: 0;
+    padding: 0;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+button {
+    box-shadow: inset 0 -2px transparent;
+    border: none;
+    border-radius: 0;
+    background-color: transparent;
+}
+
+button:hover {
+    background-color: transparent;
+    box-shadow: inset 0 -2px #8b5cf6;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    background-color: transparent;
+    color: #64728b;
+}
+
+#workspaces button:hover {
+    color: #b5bbcb;
+    box-shadow: inset 0 -2px #8b5cf6;
+}
+
+#workspaces button.focused {
+    background-color: transparent;
+    color: #b5bbcb;
+    box-shadow: inset 0 -2px #8b5cf6;
+}
+
+#workspaces button.urgent {
+    background-color: transparent;
+    color: #f59e0b;
+}
+
+#mode {
+    background-color: transparent;
+    color: #b5bbcb;
+    box-shadow: inset 0 -2px #8b5cf6;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#scratchpad,
+#power-profiles-daemon,
+#custom-power,
+#mpd,
+#window {
+    padding: 0 10px;
+    margin: 0;
+    background-color: transparent;
+    color: #b5bbcb;
+}
+
+#window,
+#workspaces {
+    margin: 0 4px;
+}
+
+#tray > * {
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+}
+
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
+}
+
+#battery.charging,
+#battery.plugged {
+    background-color: transparent;
+    color: #728aa7;
+}
+
+@keyframes blink {
+    to {
+        opacity: 0.65;
+    }
+}
+
+#battery.critical:not(.charging) {
+    background-color: transparent;
+    color: #f59e0b;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#power-profiles-daemon {
+    padding-right: 15px;
+}
+
+#power-profiles-daemon.performance,
+#power-profiles-daemon.balanced,
+#power-profiles-daemon.power-saver {
+    background-color: transparent;
+    color: #b5bbcb;
+}
+
+label:focus {
+    background-color: transparent;
+}
+
+#network.disconnected {
+    background-color: transparent;
+    color: #f59e0b;
+}
+
+#pulseaudio:hover,
+#cpu:hover,
+#memory:hover,
+#clock:hover,
+#network:hover,
+#temperature:hover,
+#idle_inhibitor:hover,
+#custom-power:hover,
+#tray:hover {
+    background-color: transparent;
+    box-shadow: inset 0 -2px #8b5cf6;
+}
+
+#pulseaudio.muted {
+    background-color: transparent;
+    color: #505768;
+}
+
+#wireplumber.muted {
+    background-color: transparent;
+    color: #95646b;
+}
+
+#custom-media {
+    min-width: 100px;
+}
+
+#custom-media.custom-spotify,
+#custom-media.custom-vlc {
+    background-color: transparent;
+    color: #b5bbcb;
+}
+
+#temperature.critical {
+    background-color: transparent;
+    color: #f59e0b;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: transparent;
+    color: #f59e0b;
+}
+
+#idle_inhibitor.activated {
+    background-color: transparent;
+    color: #8b5cf6;
+}
+
+#mpd.disconnected {
+    background-color: transparent;
+    color: #f59e0b;
+}
+
+#mpd.stopped,
+#mpd.paused {
+    background-color: transparent;
+    color: #64728b;
+}
+
+#language {
+    background: transparent;
+    color: #b5bbcb;
+    padding: 0 5px;
+    margin: 0 5px;
+    min-width: 16px;
+}
+
+#keyboard-state {
+    background: transparent;
+    color: #b5bbcb;
+    padding: 0 0;
+    margin: 0 5px;
+    min-width: 16px;
+}
+
+#keyboard-state > label {
+    padding: 0 5px;
+}
+
+#keyboard-state > label.locked {
+    background: transparent;
+    color: #8b5cf6;
+}
+
+#scratchpad.empty {
+    background-color: transparent;
+}
+
+#privacy {
+    padding: 0;
+}
+
+#privacy-item {
+    padding: 0 5px;
+    color: #b5bbcb;
+}
+
+#privacy-item.screenshare,
+#privacy-item.audio-in,
+#privacy-item.audio-out {
+    background-color: transparent;
+    color: #b5bbcb;
+}

@@ -1,0 +1,274 @@
+/* Retro Eighties — neon room — flat bar, transparent modules */
+
+* {
+    font-family: 'Noto Sans Mono', 'Font Awesome 6 Free', 'Font Awesome 6 Brands', monospace;
+    font-size: 13px;
+    min-height: 0;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+}
+
+window#waybar {
+    background-color: rgba(31, 27, 36, 0.90);
+    border-bottom: 2px solid #ff4da6;
+    color: #bca9bd;
+    padding: 0;
+    transition-property: background-color;
+    transition-duration: 0.3s;
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+    margin: 0;
+    padding: 0;
+}
+
+.modules-left > widget,
+.modules-center > widget,
+.modules-right > widget {
+    margin: 0;
+    padding: 0;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+button {
+    box-shadow: inset 0 -2px transparent;
+    border: none;
+    border-radius: 0;
+    background-color: transparent;
+}
+
+button:hover {
+    background-color: transparent;
+    box-shadow: inset 0 -2px #ff4da6;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    background-color: transparent;
+    color: #5d515d;
+}
+
+#workspaces button:hover {
+    color: #bca9bd;
+    box-shadow: inset 0 -2px #ff4da6;
+}
+
+#workspaces button.focused {
+    background-color: transparent;
+    color: #bca9bd;
+    box-shadow: inset 0 -2px #ff4da6;
+}
+
+#workspaces button.urgent {
+    background-color: transparent;
+    color: #39c5cf;
+}
+
+#mode {
+    background-color: transparent;
+    color: #bca9bd;
+    box-shadow: inset 0 -2px #ff4da6;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#scratchpad,
+#power-profiles-daemon,
+#custom-power,
+#mpd,
+#window {
+    padding: 0 10px;
+    margin: 0;
+    background-color: transparent;
+    color: #bca9bd;
+}
+
+#window,
+#workspaces {
+    margin: 0 4px;
+}
+
+#tray > * {
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+}
+
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
+}
+
+#battery.charging,
+#battery.plugged {
+    background-color: transparent;
+    color: #da9e50;
+}
+
+@keyframes blink {
+    to {
+        opacity: 0.65;
+    }
+}
+
+#battery.critical:not(.charging) {
+    background-color: transparent;
+    color: #39c5cf;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#power-profiles-daemon {
+    padding-right: 15px;
+}
+
+#power-profiles-daemon.performance,
+#power-profiles-daemon.balanced,
+#power-profiles-daemon.power-saver {
+    background-color: transparent;
+    color: #bca9bd;
+}
+
+label:focus {
+    background-color: transparent;
+}
+
+#network.disconnected {
+    background-color: transparent;
+    color: #39c5cf;
+}
+
+#pulseaudio:hover,
+#cpu:hover,
+#memory:hover,
+#clock:hover,
+#network:hover,
+#temperature:hover,
+#idle_inhibitor:hover,
+#custom-power:hover,
+#tray:hover {
+    background-color: transparent;
+    box-shadow: inset 0 -2px #ff4da6;
+}
+
+#pulseaudio.muted {
+    background-color: transparent;
+    color: #514249;
+}
+
+#wireplumber.muted {
+    background-color: transparent;
+    color: #8b75c2;
+}
+
+#custom-media {
+    min-width: 100px;
+}
+
+#custom-media.custom-spotify,
+#custom-media.custom-vlc {
+    background-color: transparent;
+    color: #bca9bd;
+}
+
+#temperature.critical {
+    background-color: transparent;
+    color: #39c5cf;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: transparent;
+    color: #39c5cf;
+}
+
+#idle_inhibitor.activated {
+    background-color: transparent;
+    color: #ff4da6;
+}
+
+#mpd.disconnected {
+    background-color: transparent;
+    color: #39c5cf;
+}
+
+#mpd.stopped,
+#mpd.paused {
+    background-color: transparent;
+    color: #5d515d;
+}
+
+#language {
+    background: transparent;
+    color: #bca9bd;
+    padding: 0 5px;
+    margin: 0 5px;
+    min-width: 16px;
+}
+
+#keyboard-state {
+    background: transparent;
+    color: #bca9bd;
+    padding: 0 0;
+    margin: 0 5px;
+    min-width: 16px;
+}
+
+#keyboard-state > label {
+    padding: 0 5px;
+}
+
+#keyboard-state > label.locked {
+    background: transparent;
+    color: #ff4da6;
+}
+
+#scratchpad.empty {
+    background-color: transparent;
+}
+
+#privacy {
+    padding: 0;
+}
+
+#privacy-item {
+    padding: 0 5px;
+    color: #bca9bd;
+}
+
+#privacy-item.screenshare,
+#privacy-item.audio-in,
+#privacy-item.audio-out {
+    background-color: transparent;
+    color: #bca9bd;
+}

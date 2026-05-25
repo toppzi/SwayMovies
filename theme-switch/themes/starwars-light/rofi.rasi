@@ -1,0 +1,133 @@
+/**
+ * App launcher — Star Wars Hoth (light)
+ */
+
+configuration {
+    modes: "drun";
+    show-icons: true;
+    icon-theme: "Adwaita";
+    drun-display-format: "{name}";
+    drun-match-fields: "name,generic,exec,categories,keywords";
+    sort: true;
+    sorting-method: "fzf";
+    display-drun: "REBEL ALLIANCE";
+}
+
+* {
+    background-color: transparent;
+    font: "Noto Sans Mono 11";
+
+    base: #f0f4f7;
+    surface0: #e8eef4;
+    surface1: #d3dde7;
+    overlay0: #aec8de;
+    text: #262b42;
+    subtext: #64738c;
+    rebel: #a8282b;
+    engine: #ff5a5f;
+
+    background: @base;
+    foreground: @text;
+    normal-background: @surface0;
+    normal-foreground: @text;
+    alternate-normal-background: @surface0;
+    alternate-normal-foreground: @text;
+    selected-normal-background: @surface1;
+    selected-normal-foreground: @text;
+    active-foreground: @rebel;
+    urgent-foreground: @engine;
+}
+
+window {
+    location: center;
+    anchor: center;
+    width: 44em;
+    border: 2px;
+    border-radius: 4px;
+    border-color: @rebel;
+    background-color: rgba(240, 244, 247, 96%);
+    padding: 14px;
+}
+
+mainbox {
+    spacing: 10px;
+    children: [ inputbar, listview ];
+}
+
+inputbar {
+    spacing: 8px;
+    children: [ prompt, entry ];
+}
+
+prompt {
+    text-color: @rebel;
+    padding: 0 6px 0 0;
+}
+
+entry {
+    background-color: @surface0;
+    text-color: @text;
+    placeholder: "Search applications…";
+    placeholder-color: @subtext;
+    padding: 10px 12px;
+    border-radius: 2px;
+    border: 1px;
+    border-color: @overlay0;
+}
+
+listview {
+    columns: 2;
+    lines: 8;
+    fixed-columns: true;
+    cycle: false;
+    spacing: 8px;
+    scrollbar: true;
+}
+
+element {
+    orientation: horizontal;
+    spacing: 10px;
+    padding: 10px 12px;
+    border-radius: 2px;
+    border: 1px;
+    border-color: transparent;
+    cursor: pointer;
+    children: [ element-icon, element-text ];
+}
+
+element-icon {
+    size: 32px;
+    cursor: inherit;
+}
+
+element-text {
+    text-color: @text;
+    vertical-align: 0.5;
+    cursor: inherit;
+}
+
+element normal normal {
+    background-color: @surface0;
+}
+
+element alternate normal {
+    background-color: rgba(232, 238, 244, 90%);
+}
+
+element selected normal {
+    background-color: @surface1;
+    border-color: @rebel;
+    text-color: @text;
+}
+
+element selected {
+    background-color: @surface1;
+}
+
+scrollbar {
+    width: 6px;
+    handle-color: @overlay0;
+    handle-width: 6px;
+    border-radius: 0;
+    padding: 0;
+}

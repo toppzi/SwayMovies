@@ -1,0 +1,133 @@
+/**
+ * App launcher — Retro Eighties
+ */
+
+configuration {
+    modes: "drun";
+    show-icons: true;
+    icon-theme: "Adwaita";
+    drun-display-format: "{name}";
+    drun-match-fields: "name,generic,exec,categories,keywords";
+    sort: true;
+    sorting-method: "fzf";
+    display-drun: "RETRO ZONE";
+}
+
+* {
+    background-color: transparent;
+    font: "Noto Sans Mono 11";
+
+    base: #1f1b24;
+    surface0: #242c56;
+    surface1: #394ca3;
+    overlay0: #514249;
+    text: #bca9bd;
+    subtext: #5d515d;
+    neon: #ff4da6;
+    cyan: #39c5cf;
+
+    background: @base;
+    foreground: @text;
+    normal-background: @surface0;
+    normal-foreground: @text;
+    alternate-normal-background: @surface0;
+    alternate-normal-foreground: @text;
+    selected-normal-background: @surface1;
+    selected-normal-foreground: @text;
+    active-foreground: @neon;
+    urgent-foreground: @cyan;
+}
+
+window {
+    location: center;
+    anchor: center;
+    width: 44em;
+    border: 2px;
+    border-radius: 4px;
+    border-color: @neon;
+    background-color: rgba(31, 27, 36, 94%);
+    padding: 14px;
+}
+
+mainbox {
+    spacing: 10px;
+    children: [ inputbar, listview ];
+}
+
+inputbar {
+    spacing: 8px;
+    children: [ prompt, entry ];
+}
+
+prompt {
+    text-color: @neon;
+    padding: 0 6px 0 0;
+}
+
+entry {
+    background-color: @surface0;
+    text-color: @text;
+    placeholder: "Search applications…";
+    placeholder-color: @overlay0;
+    padding: 10px 12px;
+    border-radius: 2px;
+    border: 1px;
+    border-color: @surface1;
+}
+
+listview {
+    columns: 2;
+    lines: 8;
+    fixed-columns: true;
+    cycle: false;
+    spacing: 8px;
+    scrollbar: true;
+}
+
+element {
+    orientation: horizontal;
+    spacing: 10px;
+    padding: 10px 12px;
+    border-radius: 2px;
+    border: 1px;
+    border-color: transparent;
+    cursor: pointer;
+    children: [ element-icon, element-text ];
+}
+
+element-icon {
+    size: 32px;
+    cursor: inherit;
+}
+
+element-text {
+    text-color: @text;
+    vertical-align: 0.5;
+    cursor: inherit;
+}
+
+element normal normal {
+    background-color: @surface0;
+}
+
+element alternate normal {
+    background-color: rgba(36, 44, 86, 80%);
+}
+
+element selected normal {
+    background-color: @surface1;
+    border-color: @neon;
+    text-color: @text;
+}
+
+element selected {
+    background-color: @surface1;
+}
+
+scrollbar {
+    width: 6px;
+    handle-color: @overlay0;
+    handle-width: 6px;
+    border-radius: 0;
+    padding: 0;
+}
