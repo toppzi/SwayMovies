@@ -1,0 +1,145 @@
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+
+    "logo": {
+        "type": "file",
+        "source": "~/fastfetch/knightrider.txt",
+        "position": "top",
+        "color": {
+            "1": "red",
+            "2": "blue",
+            "3": "yellow",
+            "4": "red"
+        },
+        "padding": {
+            "top": 1,
+            "left": 2,
+            "right": 1
+        }
+    },
+
+    "display": {
+        "separator": " :: ",
+        "color": {
+            "keys": "red",
+            "title": "blue"
+        },
+        "bar": {
+            "char": {
+                "elapsed": "█",
+                "total": "░"
+            },
+            "width": 16,
+            "border": {
+                "left": "[",
+                "right": "]"
+            }
+        }
+    },
+
+    "modules": [
+        {
+            "type": "custom",
+            "format": "{#@52}┌───────────────────────────────────────────────────┐{#}"
+        },
+        {
+            "type": "custom",
+            "format": "{#@52}│ {#@196}[ CRUISE MODE ]{#@52}  // KITT · scanner active          │{#}"
+        },
+        {
+            "type": "custom",
+            "format": "{#@52}└───────────────────────────────────────────────────┘{#}"
+        },
+        "break",
+
+        {
+            "type": "title",
+            "key": "operator",
+            "format": "{user-name}@{host-name}"
+        },
+        "break",
+
+        {
+            "type": "custom",
+            "format": "{#@52}── {#@214}hardware{#@52} ─────────────────────────────────────{#}"
+        },
+        {
+            "type": "host",
+            "key": "machine"
+        },
+        {
+            "type": "cpu",
+            "key": "cpu"
+        },
+        {
+            "type": "gpu",
+            "key": "gpu",
+            "format": "{name}"
+        },
+        "break",
+
+        {
+            "type": "custom",
+            "format": "{#@52}── {#@214}software{#@52} ─────────────────────────────────────{#}"
+        },
+        {
+            "type": "os",
+            "key": "distro"
+        },
+        {
+            "type": "kernel",
+            "key": "kernel"
+        },
+        {
+            "type": "packages",
+            "key": "pkgs",
+            "format": "{all}"
+        },
+        {
+            "type": "shell",
+            "key": "shell"
+        },
+        {
+            "type": "wm",
+            "key": "de/wm"
+        },
+        {
+            "type": "terminal",
+            "key": "term"
+        },
+        "break",
+
+        {
+            "type": "custom",
+            "format": "{#@52}── {#@214}usage{#@52} ───────────────────────────────────────{#}"
+        },
+        {
+            "type": "memory",
+            "key": "mem",
+            "format": "{used} / {total}",
+            "percent": {
+                "type": ["bar", "hide-others"]
+            }
+        },
+        {
+            "type": "swap",
+            "key": "swap",
+            "format": "{used} / {total}"
+        },
+        {
+            "type": "uptime",
+            "key": "uptime"
+        },
+        {
+            "type": "command",
+            "key": "age",
+            "text": "birth_install=$(stat -c %W /); current=$(date +%s); days=$(( (current - birth_install) / 86400 )); echo \"${days}d uptime on disk\""
+        },
+
+        "break",
+        {
+            "type": "custom",
+            "format": "{#@196}▓▓▓▓▓{#@214} Michael, get ready...{#}"
+        }
+    ]
+}

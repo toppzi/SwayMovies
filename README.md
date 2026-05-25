@@ -16,6 +16,7 @@ Movie-themed dotfiles for **Sway** on Fedora/Linux: one command switches wallpap
 | `predator` | Predator — jungle |
 | `mortalkombat` | Mortal Kombat |
 | `bikermice` | Biker Mice from Mars |
+| `knightrider` | Knight Rider — KITT dashboard |
 
 ## Requirements
 
