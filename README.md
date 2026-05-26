@@ -1,6 +1,6 @@
 # SwayMovies
 
-Movie-themed dotfiles for **Sway** on Fedora/Linux: one command switches wallpaper, colors, Waybar, Foot, Rofi, and fastfetch.
+Movie-themed dotfiles for **Sway** on Fedora/Linux: one command switches wallpaper, colors, Waybar, Kitty, Rofi, and fastfetch.
 
 ## Themes
 
@@ -8,7 +8,7 @@ Movie-themed dotfiles for **Sway** on Fedora/Linux: one command switches wallpap
 |----|----------------|
 | `terminator` | Terminator / Skynet |
 | `starwars` | Star Wars (dark) |
-| `starwars-light` | Star Wars — Hoth / X-wing (light Foot) |
+| `starwars-light` | Star Wars — Hoth / X-wing (light palette) |
 | `mandalorian` | The Mandalorian |
 | `eighties` | Retro 80s room |
 | `tmnt` | Teenage Mutant Ninja Turtles |
@@ -22,10 +22,14 @@ Movie-themed dotfiles for **Sway** on Fedora/Linux: one command switches wallpap
 
 - [Sway](https://github.com/swaywm/sway)
 - [waybar](https://github.com/Alexays/Waybar)
-- [foot](https://codeberg.org/dnkl/foot)
+- [kitty](https://sw.kovidgoyal.net/kitty/)
 - [rofi](https://github.com/davatorium/rofi) (Wayland)
 - [fastfetch](https://github.com/fastfetch-cli/fastfetch) (optional)
 - `swaybg`, `notify-send`, ImageMagick (optional, for screenshots)
+- `mate-polkit` (recommended on Fedora 41+, for privilege prompts in Sway; replaces removed `polkit-gnome`)
+- `xorg-x11-server-utils` (provides `xrandr`; **required** for Lutris to start on Wayland)
+- `NetworkManager-applet` (optional tray icon; `nm-applet`)
+- `sddm` (optional, for themed login screen sync via `sddm-sync.sh`)
 
 ## Install
 
@@ -49,10 +53,16 @@ Add wallpapers to `~/Pictures/Wallpapers/` (see [wallpapers/README.md](wallpaper
 |--------|---------|
 | Theme menu | **Super+Shift+T** |
 | List themes | `~/.config/theme-switch/theme-switch.sh list` |
+| Firefox (Media ws) | **Super+B** |
+| Thunar (Main ws) | **Super+Shift+F** |
+| Vesktop (Chat ws) | **Super+Shift+D** |
+| Steam (Games ws) | **Super+G** |
 | Apply theme | `~/.config/theme-switch/theme-switch.sh starwars` |
 | Current theme | `~/.config/theme-switch/theme-switch.sh current` |
+| Login theme | Restored automatically on Sway start from `~/.local/state/theme-switch/current` |
+| Sync SDDM login background | `sudo ~/.config/theme-switch/sddm-sync.sh` |
 
-Open a **new Foot** window and shell after switching for terminal + fastfetch colors.
+Open a **new Kitty** window after switching for terminal + fastfetch colors (running Kitty windows update colors automatically when possible).
 
 ## Repository layout
 

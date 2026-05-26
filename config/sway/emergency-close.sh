@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Run from a terminal (foot: Super+Return) when windows will not close normally.
+# Run from a terminal (kitty: Super+Return) when windows will not close normally.
 set -eu
 
 if ! swaymsg -t get_version >/dev/null 2>&1; then
