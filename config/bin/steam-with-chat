@@ -1,0 +1,88 @@
+#!/usr/bin/env bash
+# Launch Steam + Friends & Chat and tile them like a split layout on the focused output.
+set -euo pipefail
+
+MAIN_TITLE='Steam'
+CHAT_TITLE='Friends & Chat'
+
+get_output() {
+  swaymsg -t get_outputs 2>/dev/null | python3 -c "
+import json,sys
+for o in json.load(sys.stdin):
+    if o.get('focused'):
+        print(o['name']); raise SystemExit
+print('DP-2')
+" 2>/dev/null || echo 'DP-2'
+}
+
+layout_windows() {
+  local output="$1"
+  local geom
+  geom=$(swaymsg -t get_outputs 2>/dev/null | python3 -c "
+import json,sys
+name=sys.argv[1]
+for o in json.load(sys.stdin):
+    if o['name']==name:
+        r=o['rect']
+        print(r['width'], r['height'], r['x'], r['y'])
+        raise SystemExit
+print('2560 1440 0 0')
+" "$output")
+
+  read -r width height off_x off_y <<<"$geom"
+  local bar=48 gap=8
+  local top=$((off_y + bar))
+  local usable_h=$((height - bar - gap))
+  local chat_w=430
+  local main_w=$((width - chat_w - gap))
+
+  swaymsg -- "
+    [title=\"${CHAT_TITLE}\"] move container to workspace number 4, move container to output ${output}, floating enable, resize set ${chat_w} ${usable_h}, move absolute position $((off_x + width - chat_w)) ${top}, border pixel 1
+  " >/dev/null 2>&1 || true
+
+  swaymsg -- "
+    [title=\"${MAIN_TITLE}\"] move container to workspace number 4, move container to output ${output}, floating enable, resize set ${main_w} ${usable_h}, move absolute position ${off_x} ${top}, border pixel 1
+  " >/dev/null 2>&1 || true
+}
+
+open_friends() {
+  if pgrep -x steam >/dev/null; then
+    steam steam://open/friends >/dev/null 2>&1 &
+    return
+  fi
+  steam -silent >/dev/null 2>&1 &
+  for _ in {1..30}; do
+    pgrep -x steam >/dev/null && break
+    sleep 1
+  done
+  steam steam://open/friends >/dev/null 2>&1 &
+}
+
+main() {
+  command -v swaymsg >/dev/null || { echo 'steam-with-chat: swaymsg not found' >&2; exit 1; }
+
+  if [[ "${1:-}" == "--layout-only" ]]; then
+    layout_windows "$(get_output)"
+    exit 0
+  fi
+
+  open_friends
+
+  local output tries=0
+  output=$(get_output)
+
+  while (( tries < 45 )); do
+    if swaymsg -t get_tree 2>/dev/null | grep -q '"Friends & Chat"'; then
+      layout_windows "$output"
+      exit 0
+    fi
+    sleep 1
+    ((tries++)) || true
+  done
+
+  echo 'steam-with-chat: Friends & Chat window did not appear.' >&2
+  echo 'In Steam: View → Friends & Chat (or enable the separate friends list).' >&2
+  exit 1
+}
+
+main "$@"

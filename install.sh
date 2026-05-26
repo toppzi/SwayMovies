@@ -15,6 +15,15 @@ chmod +x "$HOME/.config/theme-switch/"*.sh
 if [[ -x "$HOME/.config/theme-switch/generate-kitty-conf.sh" ]]; then
   "$HOME/.config/theme-switch/generate-kitty-conf.sh" || true
 fi
+if [[ -x "$HOME/.config/theme-switch/generate-gtk-css.sh" ]]; then
+  "$HOME/.config/theme-switch/generate-gtk-css.sh" || true
+fi
+
+# User scripts (Steam layout, etc.)
+install -d "$HOME/.local/bin"
+if [[ -f "$REPO_ROOT/config/bin/steam-with-chat" ]]; then
+  install -m755 "$REPO_ROOT/config/bin/steam-with-chat" "$HOME/.local/bin/steam-with-chat"
+fi
 
 # Sway
 install -d "$HOME/.config/sway/config.d"
@@ -71,15 +80,20 @@ while IFS= read -r line; do
   missing=1
 done <"$REPO_ROOT/wallpapers/MANIFEST.txt"
 
+for cmd in sway waybar kitty rofi swaybg; do
+  if ! command -v "$cmd" >/dev/null; then
+    echo "  missing $cmd"
+    missing=1
+  fi
+done
 if ! command -v xrandr >/dev/null; then
   echo "  missing xrandr (install xorg-x11-server-utils — Lutris will crash without it)"
   missing=1
 fi
-
 if (( missing )); then
   echo ""
   echo "Add wallpaper files listed in wallpapers/MANIFEST.txt to ~/Pictures/Wallpapers/"
-  echo "Install missing packages above (e.g. sudo dnf install xorg-x11-server-utils)"
+  echo "Install missing packages (e.g. sudo dnf install sway waybar kitty rofi swaybg xorg-x11-server-utils)"
 fi
 
 # Apply default theme

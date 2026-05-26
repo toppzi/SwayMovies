@@ -83,6 +83,8 @@ swaymsg reload
 
 Add wallpapers to `~/Pictures/Wallpapers/` (see [wallpapers/README.md](wallpapers/README.md)).
 
+`install.sh` copies Sway snippets, the theme switcher, Waybar config, Kitty/GTK assets, and `~/.local/bin/steam-with-chat`. Paths in repo files use `@HOME@` and are expanded on install.
+
 ## Usage
 
 | Action | Command / key |
@@ -95,6 +97,7 @@ Add wallpapers to `~/Pictures/Wallpapers/` (see [wallpapers/README.md](wallpaper
 | Thunar (Main ws) | **Super+Shift+F** |
 | Vesktop (Chat ws) | **Super+Shift+D** |
 | Steam (Games ws) | **Super+G** |
+| Steam + Friends layout | **Super+Shift+S** |
 | Login theme restore | Automatic on Sway start (`~/.local/state/theme-switch/current`) |
 | Sync SDDM login wallpaper | `sudo ~/.config/theme-switch/sddm-sync.sh` |
 

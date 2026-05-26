@@ -2,7 +2,7 @@
 # Run from a TTY (Ctrl+Alt+F3) if Sway is stuck.
 set -eu
 
-user="${1:-${USER:-toppzi}}"
+user="${1:-${USER:-$(id -un)}}"
 echo "Stopping Sway session for $user..."
 
 # Prefer a clean session stop; fall back to killing the compositor.
