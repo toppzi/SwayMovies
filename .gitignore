@@ -9,6 +9,8 @@ wallpapers/files/
 *.jpeg
 *.png
 *.webp
+!docs/screenshots/
+!docs/screenshots/**
 
 # Runtime state (created on the machine)
 .local/
