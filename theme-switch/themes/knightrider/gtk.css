@@ -1,0 +1,237 @@
+/* GTK apps — knightrider (from foot.ini colors-dark) */
+
+@define-color theme_bg_color #08061c;
+@define-color theme_fg_color #f1c09f;
+@define-color theme_base_color #08061c;
+@define-color theme_text_color #f1c09f;
+@define-color theme_selected_bg_color #5c112e;
+@define-color theme_selected_fg_color #f1c09f;
+@define-color theme_unfocused_fg_color #f1c09f;
+@define-color insensitive_fg_color mix(#f1c09f, #5c112e, 0.45);
+@define-color borders #5c112e;
+@define-color accent_bg_color #468aa2;
+@define-color accent_color #468aa2;
+@define-color accent_fg_color #f1c09f;
+@define-color warning_color #468aa2;
+@define-color menu_bg_color #08061c;
+@define-color menu_fg_color #f1c09f;
+@define-color popover_bg_color #5c112e;
+@define-color popover_fg_color #f1c09f;
+@define-color window_bg_color #08061c;
+@define-color window_fg_color #f1c09f;
+@define-color view_bg_color #08061c;
+@define-color view_fg_color #f1c09f;
+@define-color headerbar_bg_color #5c112e;
+@define-color headerbar_fg_color #f1c09f;
+@define-color headerbar_border_color #5c112e;
+@define-color sidebar_bg_color #5c112e;
+@define-color sidebar_fg_color #f1c09f;
+@define-color sidebar_backdrop_color shade(#5c112e, 0.92);
+@define-color sidebar_border_color #5c112e;
+
+/* Menus, popovers, tooltips (fixes white context menus) */
+menu,
+.menu,
+.context-menu,
+menubar,
+popover,
+popover.background,
+popover > contents,
+.gtkpopover,
+tooltip,
+tooltip.background,
+combobox popup,
+.window.popup,
+popup,
+popover.osd,
+decoration,
+decoration:backdrop {
+  background-color: @menu_bg_color;
+  color: @menu_fg_color;
+  border: 1px solid @borders;
+}
+
+menuitem,
+.menuitem,
+modelbutton,
+popover modelbutton,
+popover button {
+  background-color: transparent;
+  color: @menu_fg_color;
+}
+
+menuitem:hover,
+.menuitem:hover,
+modelbutton:hover,
+popover modelbutton:hover {
+  background-color: @popover_bg_color;
+  color: @theme_selected_fg_color;
+}
+
+menu separator,
+popover separator {
+  background-color: @borders;
+}
+
+window,
+dialog,
+messagedialog {
+  background-color: @theme_bg_color;
+  color: @theme_fg_color;
+}
+
+headerbar,
+.titlebar,
+toolbar,
+actionbar {
+  background-color: @headerbar_bg_color;
+  color: @headerbar_fg_color;
+  border-color: @borders;
+}
+
+/* Sidebars and list panes (Lutris, prefs dialogs, GNOME-style sidebars) */
+.sidebar,
+list,
+list.lutris-sidebar,
+.lutris-sidebar {
+  background-color: @sidebar_bg_color;
+  color: @sidebar_fg_color;
+  border-color: @sidebar_border_color;
+}
+
+.sidebar list,
+list.lutris-sidebar,
+.lutris-sidebar {
+  background-color: transparent;
+}
+
+.lutris-sidebar row,
+list.lutris-sidebar > row,
+.sidebar row,
+list row {
+  background-color: transparent;
+  color: @sidebar_fg_color;
+}
+
+.lutris-sidebar row label,
+list.lutris-sidebar row label,
+.sidebar row label,
+list row label {
+  color: @sidebar_fg_color;
+}
+
+.lutris-sidebar row image,
+list.lutris-sidebar row image {
+  color: @sidebar_fg_color;
+}
+
+.lutris-sidebar row:hover,
+list.lutris-sidebar row.activatable:hover,
+.sidebar row.activatable:hover,
+list row.activatable:hover {
+  background-color: alpha(@accent_bg_color, 0.18);
+  color: @sidebar_fg_color;
+}
+
+.lutris-sidebar row:selected,
+list.lutris-sidebar row:selected,
+.sidebar row:selected,
+list row:selected {
+  background-color: @theme_selected_bg_color;
+  color: @theme_selected_fg_color;
+}
+
+.lutris-sidebar row:selected label,
+list.lutris-sidebar row:selected label,
+.sidebar row:selected label,
+list row:selected label {
+  color: @theme_selected_fg_color;
+}
+
+.lutris-sidebar separator,
+list.lutris-sidebar separator {
+  background-color: @sidebar_border_color;
+}
+
+treeview.view,
+.view,
+textview,
+textview text {
+  background-color: @theme_base_color;
+  color: @theme_text_color;
+}
+
+treeview.view:selected,
+.view:selected,
+*:selected {
+  background-color: alpha(@accent_bg_color, 0.35);
+  color: @theme_selected_fg_color;
+}
+
+treeview.view:selected:focus,
+.view:selected:focus {
+  background-color: @accent_bg_color;
+  color: @accent_fg_color;
+}
+
+entry,
+combobox button,
+spinbutton {
+  background-color: @theme_base_color;
+  color: @theme_text_color;
+  border-color: @borders;
+}
+
+button {
+  background-color: @theme_selected_bg_color;
+  color: @theme_fg_color;
+  border-color: @borders;
+}
+
+button:hover {
+  background-color: shade(@theme_selected_bg_color, 1.08);
+}
+
+button:checked,
+button:active {
+  background-color: @accent_bg_color;
+  color: @accent_fg_color;
+}
+
+.lutris-sidebar button,
+list.lutris-sidebar button {
+  background-color: transparent;
+  color: @sidebar_fg_color;
+  border: none;
+}
+
+scrollbar slider {
+  background-color: @borders;
+}
+
+.thunar,
+.thunar * {
+  color: @theme_fg_color;
+}
+
+.thunar gridview,
+.thunar treeview,
+.thunar .view {
+  background-color: @theme_base_color;
+  color: @theme_text_color;
+}
+
+.thunar .sidebar .view {
+  background-color: @sidebar_bg_color;
+}
+
+.thunar .standard-view {
+  background-color: @theme_base_color;
+}
+
+statusbar,
+.statusbar,
+infobar {
+  background-color: @theme_bg_color;
+  color: @theme_fg_color;
+}

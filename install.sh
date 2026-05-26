@@ -12,13 +12,16 @@ install -d "$HOME/.config/theme-switch"
 cp -a "$REPO_ROOT/theme-switch/"*.sh "$HOME/.config/theme-switch/"
 cp -a "$REPO_ROOT/theme-switch/themes" "$HOME/.config/theme-switch/"
 chmod +x "$HOME/.config/theme-switch/"*.sh
+if [[ -x "$HOME/.config/theme-switch/generate-kitty-conf.sh" ]]; then
+  "$HOME/.config/theme-switch/generate-kitty-conf.sh" || true
+fi
 
 # Sway
 install -d "$HOME/.config/sway/config.d"
 for f in "$REPO_ROOT/config/sway/config.d/"*.conf; do
   expand_home <"$f" >"$HOME/.config/sway/config.d/$(basename "$f")"
 done
-for f in wallpaper-lib.sh wallpaper-restore.sh restart-sway.sh emergency-close.sh; do
+for f in wallpaper-lib.sh wallpaper-restore.sh restart-sway.sh emergency-close.sh autostart-essentials.sh waybar-restart.sh launch-on-ws.sh; do
   [[ -f "$REPO_ROOT/config/sway/$f" ]] || continue
   expand_home <"$REPO_ROOT/config/sway/$f" >"$HOME/.config/sway/$f"
   chmod +x "$HOME/.config/sway/$f"
@@ -28,7 +31,12 @@ if [[ ! -f "$HOME/.config/sway/config" ]]; then
   echo "Installing sway config.example → ~/.config/sway/config (edit monitors!)"
   cp "$REPO_ROOT/config/sway/config.example" "$HOME/.config/sway/config"
 else
-  echo "Keeping existing ~/.config/sway/config (see config.example for reference)"
+  if grep -q 'set $term foot' "$HOME/.config/sway/config" 2>/dev/null; then
+    sed -i 's/set $term foot/set $term kitty/g; s/-terminal foot/-terminal kitty/g' "$HOME/.config/sway/config"
+    echo "Updated ~/.config/sway/config: foot → kitty"
+  else
+    echo "Keeping existing ~/.config/sway/config (see config.example for reference)"
+  fi
 fi
 
 # Waybar
@@ -63,14 +71,24 @@ while IFS= read -r line; do
   missing=1
 done <"$REPO_ROOT/wallpapers/MANIFEST.txt"
 
+if ! command -v xrandr >/dev/null; then
+  echo "  missing xrandr (install xorg-x11-server-utils — Lutris will crash without it)"
+  missing=1
+fi
+
 if (( missing )); then
   echo ""
   echo "Add wallpaper files listed in wallpapers/MANIFEST.txt to ~/Pictures/Wallpapers/"
+  echo "Install missing packages above (e.g. sudo dnf install xorg-x11-server-utils)"
 fi
 
 # Apply default theme
 if [[ -x "$HOME/.config/theme-switch/theme-switch.sh" ]]; then
-  "$HOME/.config/theme-switch/theme-switch.sh" terminator || true
+  if [[ -f "$HOME/.local/state/theme-switch/current" ]]; then
+    "$HOME/.config/theme-switch/theme-switch.sh" "$("$HOME/.config/theme-switch/theme-switch.sh" current)" || true
+  else
+    "$HOME/.config/theme-switch/theme-switch.sh" terminator || true
+  fi
 fi
 
 cat <<EOF

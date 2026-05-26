@@ -1,5 +1,5 @@
 /**
- * App launcher — drun only, Terminator / Skynet (foot / waybar / wallpaper)
+ * App launcher — drun only, Terminator / Skynet (kitty / waybar / wallpaper)
  */
 
 configuration {

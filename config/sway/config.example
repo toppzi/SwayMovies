@@ -14,8 +14,8 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-# Recommends: foot
-set $term foot
+# Recommends: kitty
+set $term kitty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -23,7 +23,7 @@ set $term foot
 set $rofi_cmd rofi \
         -terminal '$term'
 # Desktop applications only — see config.d/35-rofi.conf
-set $menu rofi -show drun -modes drun -terminal foot
+set $menu rofi -show drun -modes drun -terminal kitty
 
 ### Output configuration
 #
