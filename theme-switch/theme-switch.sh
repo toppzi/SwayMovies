@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Apply a desktop theme (sway, waybar, foot, rofi, wallpaper, fastfetch).
+# Apply a desktop theme (sway, waybar, foot, rofi, gtk/thunar, wallpaper, fastfetch).
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -61,6 +61,26 @@ apply_theme() {
   install_file "$dir/foot.ini" "$HOME/.config/foot/foot.ini"
   install_file "$dir/rofi.rasi" "$HOME/.config/rofi/config.rasi"
 
+  if [[ -f "$dir/gtk.css" ]]; then
+    install_file "$dir/gtk.css" "$HOME/.config/gtk-3.0/gtk.css"
+    install_file "$dir/gtk.css" "$HOME/.config/gtk-4.0/gtk.css"
+  fi
+  if [[ -f "$dir/gtk-settings.ini" ]]; then
+    install_file "$dir/gtk-settings.ini" "$HOME/.config/gtk-3.0/settings.ini"
+    install_file "$dir/gtk-settings.ini" "$HOME/.config/gtk-4.0/settings.ini"
+    local gtk_dark=1
+    grep -q 'gtk-application-prefer-dark-theme=0' "$dir/gtk-settings.ini" && gtk_dark=0
+    if command -v gsettings >/dev/null; then
+      if [[ "$gtk_dark" -eq 1 ]]; then
+        gsettings set org.gnome.desktop.interface color-scheme prefer-dark 2>/dev/null || true
+        gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark' 2>/dev/null || true
+      else
+        gsettings set org.gnome.desktop.interface color-scheme prefer-light 2>/dev/null || true
+        gsettings set org.gnome.desktop.interface gtk-theme Adwaita 2>/dev/null || true
+      fi
+    fi
+  fi
+
   install_file "$dir/fastfetch.jsonc" "$HOME/fastfetch/config.jsonc"
   install_file "$dir/fastfetch.jsonc" "$HOME/.config/fastfetch/config.jsonc"
   install_file "$dir/fastfetch-logo.txt" "$HOME/fastfetch/$(basename "$FASTFETCH_LOGO")"
@@ -78,6 +98,10 @@ apply_theme() {
     swaymsg reload || true
     pkill -x waybar 2>/dev/null || true
     waybar &
+    if pgrep -x thunar >/dev/null; then
+      timeout 2 thunar --quit 2>/dev/null || pkill -x thunar 2>/dev/null || true
+      (sleep 0.2; thunar) >/dev/null 2>&1 &
+    fi
   else
     echo "Note: Sway not running — configs saved; reload Sway or run: swaymsg reload"
   fi

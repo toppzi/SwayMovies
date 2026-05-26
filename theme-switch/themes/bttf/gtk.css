@@ -1,0 +1,109 @@
+/* GTK / Thunar — bttf (from foot.ini colors-dark) */
+
+@define-color theme_bg_color #0b0a21;
+@define-color theme_fg_color #dae2d7;
+@define-color theme_base_color #0b0a21;
+@define-color theme_text_color #dae2d7;
+@define-color theme_selected_bg_color #55403a;
+@define-color theme_selected_fg_color #dae2d7;
+@define-color theme_unfocused_fg_color #dae2d7;
+@define-color insensitive_fg_color #55403a;
+@define-color borders #55403a;
+@define-color accent_bg_color #c41e3a;
+@define-color accent_color #c41e3a;
+@define-color accent_fg_color #dae2d7;
+@define-color warning_color #c41e3a;
+
+window,
+dialog,
+messagedialog {
+  background-color: @theme_bg_color;
+  color: @theme_fg_color;
+}
+
+headerbar,
+.titlebar,
+toolbar,
+actionbar {
+  background-color: @theme_bg_color;
+  color: @theme_fg_color;
+  border-color: @borders;
+}
+
+treeview.view,
+.view,
+textview,
+textview text {
+  background-color: @theme_base_color;
+  color: @theme_text_color;
+}
+
+treeview.view:selected,
+.view:selected,
+row:selected,
+*:selected {
+  background-color: alpha(@accent_bg_color, 0.35);
+  color: @theme_selected_fg_color;
+}
+
+treeview.view:selected:focus,
+.view:selected:focus,
+row:selected:focus {
+  background-color: @accent_bg_color;
+  color: @accent_fg_color;
+}
+
+entry,
+combobox button,
+spinbutton {
+  background-color: @theme_base_color;
+  color: @theme_text_color;
+  border-color: @borders;
+}
+
+button {
+  background-color: @theme_selected_bg_color;
+  color: @theme_fg_color;
+  border-color: @borders;
+}
+
+button:hover {
+  background-color: shade(@theme_selected_bg_color, 1.08);
+}
+
+button:checked,
+button:active {
+  background-color: @accent_bg_color;
+  color: @accent_fg_color;
+}
+
+scrollbar slider {
+  background-color: @borders;
+}
+
+.thunar,
+.thunar * {
+  color: @theme_fg_color;
+}
+
+.thunar gridview,
+.thunar treeview,
+.thunar .view {
+  background-color: @theme_base_color;
+  color: @theme_text_color;
+}
+
+.thunar .sidebar .view {
+  background-color: shade(@theme_bg_color, 1.04);
+}
+
+.thunar .standard-view {
+  background-color: @theme_base_color;
+}
+
+statusbar,
+.statusbar,
+infobar {
+  background-color: @theme_bg_color;
+  color: @theme_fg_color;
+}
